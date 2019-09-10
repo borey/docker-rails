@@ -8,8 +8,6 @@ volumes:
 services:
   db:
     image: postgres:11.5
-    environment:
-      - POSTGRES_PASSWORD
     volumes:
       - db-data:/var/lib/postgresql/data
 
@@ -17,36 +15,43 @@ services:
     image: elasticsearch:7.3.1
     volumes:
       - es-data:/usr/share/elasticsearch/data
+    ports:
+      - 9300:9300
+      - 9200:9200
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
 
   redis:
-    image: redis:5
+    container_name: redis
+    image: redis
 
   web: &rails
     build:
       context: .
       dockerfile: Dockerfile.dev
-      environment:
-        - ELASTICSEARCH_HOST=elasticsearch
-        - REDIS_SIDEKIQ_URL=redis://redis:6379/0
-        - DB_HOST=db
-        - DB_USER=postgres
-        - DB_PASSWORD=
-        - RAILS_ENV=development
-        - RAILS_MAX_THREADS=5
-        - LANG=C.UTF-8
-      command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
-      volumes:
-        - .:/app
-        - bundle:/usr/local/bundle
-      depends_on:
-        - db
-        - sidekiq
-        - elasticsearch
-      tmpfs: /app/tmp
-      ports:
-        - "3000:3000"
-      tty: true
-      stdin_open: true
+    env_file:
+      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    depends_on:
+      - db
+      - sidekiq
+      - elasticsearch
+    tmpfs: /app/tmp
+    ports:
+      - "3000:3000"
+    # these allow you to debug with byebug by attaching to the container
+    stdin_open: true
+    tty: true
 
   sidekiq:
     build:
@@ -54,6 +59,10 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - .:/app
+      - bundle:/usr/local/bundle
     depends_on:
       - redis
+      - db
+    env_file:
+      - .env
     command: bundle exec sidekiq
