@@ -16,4 +16,5 @@ install:
   - docker-compose pull
 
 script:
+  - docker-compose run --rm web rubocop
   - docker-compose run --rm web rspec
