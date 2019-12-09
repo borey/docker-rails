@@ -1,24 +1,49 @@
 # README
+[![Build Status](https://travis-ci.org/borey/docker-rails.svg?branch=master)](https://travis-ci.org/borey/docker-rails)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A project to test setup rails project using docker container
 
-Things you may want to cover:
+## Intergrated services & functions
+- ElasticSearch
+- Kibana
+- Devise
 
-* Ruby version
+## Docker development
 
-* System dependencies
 
-* Configuration
+```docker-compose.yml``` file build a development environment mounting the current folder and running rails in development environment.
 
-* Database creation
+App configuration are stored in ```docker-env```. Please check sample config in ```docker-env.example```.
 
-* Database initialization
+Start project with docker-compose:
 
-* How to run the test suite
+```
+docker-compose up
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Run migration & seed data
 
-* Deployment instructions
+```
+docker-compose run --rm web rake db:setup
+```
 
-* ...
+Install latest JS dependency
+
+```
+docker-compose run --rm web yarn install --check-files
+```
+
+#### Run test with spring
+
+
+First start spring server
+
+```
+docker-compose run --name=spring --rm web bundle exec spring server
+```
+
+Run rspec
+
+```
+docker exec -it spring rspec
+```
