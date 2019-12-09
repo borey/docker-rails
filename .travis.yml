@@ -18,6 +18,7 @@ install:
 
 before_script:
   - docker-compose build
+  - docker-compose run --rm web yarn install --check-files
   - docker-compose run --rm web rails db:prepare
 
 script:
