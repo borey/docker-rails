@@ -1,0 +1,7 @@
+{
+  "socket.transport": "external",
+  "socket.externalServer": {
+      "host": "localhost",
+      "port": 7658
+  }
+}
