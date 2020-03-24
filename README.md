@@ -1,5 +1,6 @@
 # README
 [![Build Status](https://travis-ci.org/borey/docker-rails.svg?branch=master)](https://travis-ci.org/borey/docker-rails)
+![](https://github.com/borey/docker-rails/workflows/Docker/badge.svg)
 
 A project to test setup rails project using docker container
 
