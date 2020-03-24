@@ -28,14 +28,12 @@ jobs:
 
       - name: Run tests
         run: |
-          if [ -f docker-compose.yml ]; then
-            cp app.env.example app.env
-            docker-compose build
-            docker-compose run web rubocop
-            docker-compose run web rspec
-          else
-            docker build . --file Dockerfile
-          fi
+          cp app.env.example app.env
+          docker-compose build
+          docker-compose run web yarn install --check-files
+          docker-compose run web bundle exec rails db:prepare
+          docker-compose run web bundle exec rubocop
+          docker-compose run web bundle exec rspec
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
