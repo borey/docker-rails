@@ -4,6 +4,7 @@ volumes:
   db-data:
   es-data:
   bundle:
+  packs:
 
 services:
   db:
@@ -13,24 +14,23 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
-  elasticsearch:
-    image: elasticsearch:7.5.0
-    volumes:
-      - es-data:/usr/share/elasticsearch/data
-    ports:
-      - 9200
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - discovery.type=single-node
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
+  # elasticsearch:
+  #   image: elasticsearch:7.5.0
+  #   volumes:
+  #     - es-data:/usr/share/elasticsearch/data
+  #   ports:
+  #     - 9200
+  #   environment:
+  #     - cluster.name=docker-cluster
+  #     - bootstrap.memory_lock=true
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #     - discovery.type=single-node
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
 
   redis:
-    container_name: redis
     image: redis:5.0.7
 
   web: &rails
@@ -41,12 +41,13 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     volumes:
       - .:/app
+      - packs:/app/public/packs
       - bundle:/usr/local/bundle
     depends_on:
       - db
-      - elasticsearch
+      # - elasticsearch
       - redis
-    tmpfs: /app/tmp
+    # tmpfs: /app/tmp
     ports:
       - "3002:3000"
     # these allow you to debug with byebug by attaching to the container
@@ -57,3 +58,10 @@ services:
     <<: *rails
     command: bundle exec sidekiq -C config/sidekiq.yml
     ports: []
+
+  ngrok:
+    image: wernight/ngrok
+    ports:
+      - 4041:4040
+    environment:
+      NGROK_PORT: 'web:3000'

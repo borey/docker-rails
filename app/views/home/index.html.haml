@@ -1,0 +1,171 @@
+.wrapper
+  = render "shared/main_nav_bar"
+
+  .main-panel
+    = render "shared/top_nav_bar"
+
+    .content
+      .container-fluid
+        .row
+          .col-md-4
+            .card
+              %iframe{ src: "https://af64a2bb.ngrok.io/list_views", style: "height: 300px; border: 0;" }
+
+              .card-footer.bg-light
+                .legend
+                  List view embed code:
+                  %br
+                  .text-primary= '<iframe src="https://af64a2bb.ngrok.io/list_views" style="border: 0;"></iframe>'
+
+          .col-md-4
+            .card{ style: "width: 350px;" }
+              %iframe{ src: "https://af64a2bb.ngrok.io/?display=embed", style: "height: 500px; width: 348px; border: 0;" }
+
+              .card-footer.bg-light
+                .legend
+                  Mobile view embed code:
+                  %br
+                  .text-primary= '<iframe src="https://af64a2bb.ngrok.io/?display=embed" style="height: 500px; width: 348px; border: 0;"></iframe>'
+        .row
+          .col-md-8
+            .card
+              %iframe{ src: "https://af64a2bb.ngrok.io/?tab=hidden", style: "height: 500px; width: 530; border: 0;" }
+              .card-footer.bg-light
+                .legend
+                  With info tab closed embed code:
+                  %br
+                  .text-primary= '<iframe src="https://af64a2bb.ngrok.io/?tab=hidden" style="height: 500px; width: 530; border: 0;"></iframe>'
+
+        .row
+          .col-md-12
+            .card
+              %iframe{ src: "https://af64a2bb.ngrok.io", style: "height: 600px;  border: 0;" }
+              .card-footer.bg-light
+                .legend
+                  Desktop view embed code:
+                  %br
+                  .text-primary= '<iframe src="https://af64a2bb.ngrok.io/" style="height: 600px;  border: 0;"></iframe>'
+        -# .row
+        -#   .col-md-6
+        -#     .card
+        -#       .card-header
+        -#         %h4.card-title 2017 Sales
+        -#         %p.card-category All products including Taxes
+        -#       .card-body
+        -#         #chartActivity.ct-chart
+        -#       .card-footer
+        -#         .legend
+        -#           %i.fa.fa-circle.text-info
+        -#           Tesla Model S
+        -#           %i.fa.fa-circle.text-danger
+        -#           BMW 5 Series
+        -#         %hr/
+        -#         .stats
+        -#           %i.fa.fa-check
+        -#           Data information certified
+        -#   .col-md-6
+        -#     .card.card-tasks
+        -#       .card-header
+        -#         %h4.card-title Tasks
+        -#         %p.card-category Backend development
+        -#       .card-body
+        -#         .table-full-width
+        -#           %table.table
+        -#             %tbody
+        -#               %tr
+        -#                 %td
+        -#                   .form-check
+        -#                     %label.form-check-label
+        -#                       %input.form-check-input{type: "checkbox", value: ""}/
+        -#                       %span.form-check-sign
+        -#                 %td Sign contract for "What are conference organizers afraid of?"
+        -#                 %td.td-actions.text-right
+        -#                   %button.btn.btn-info.btn-simple.btn-link{rel: "tooltip", title: "Edit Task", type: "button"}
+        -#                     %i.fa.fa-edit
+        -#                   %button.btn.btn-danger.btn-simple.btn-link{rel: "tooltip", title: "Remove", type: "button"}
+        -#                     %i.fa.fa-times
+        -#               %tr
+        -#                 %td
+        -#                   .form-check
+        -#                     %label.form-check-label
+        -#                       %input.form-check-input{checked: "checked", type: "checkbox", value: ""}/
+        -#                       %span.form-check-sign
+        -#                 %td Lines From Great Russian Literature? Or E-mails From My Boss?
+        -#                 %td.td-actions.text-right
+        -#                   %button.btn.btn-info.btn-simple.btn-link{rel: "tooltip", title: "Edit Task", type: "button"}
+        -#                     %i.fa.fa-edit
+        -#                   %button.btn.btn-danger.btn-simple.btn-link{rel: "tooltip", title: "Remove", type: "button"}
+        -#                     %i.fa.fa-times
+        -#               %tr
+        -#                 %td
+        -#                   .form-check
+        -#                     %label.form-check-label
+        -#                       %input.form-check-input{checked: "checked", type: "checkbox", value: ""}/
+        -#                       %span.form-check-sign
+        -#                 %td
+        -#                   Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+        -#                 %td.td-actions.text-right
+        -#                   %button.btn.btn-info.btn-simple.btn-link{rel: "tooltip", title: "Edit Task", type: "button"}
+        -#                     %i.fa.fa-edit
+        -#                   %button.btn.btn-danger.btn-simple.btn-link{rel: "tooltip", title: "Remove", type: "button"}
+        -#                     %i.fa.fa-times
+        -#               %tr
+        -#                 %td
+        -#                   .form-check
+        -#                     %label.form-check-label
+        -#                       %input.form-check-input{checked: "checked", type: "checkbox"}/
+        -#                       %span.form-check-sign
+        -#                 %td Create 4 Invisible User Experiences you Never Knew About
+        -#                 %td.td-actions.text-right
+        -#                   %button.btn.btn-info.btn-simple.btn-link{rel: "tooltip", title: "Edit Task", type: "button"}
+        -#                     %i.fa.fa-edit
+        -#                   %button.btn.btn-danger.btn-simple.btn-link{rel: "tooltip", title: "Remove", type: "button"}
+        -#                     %i.fa.fa-times
+        -#               %tr
+        -#                 %td
+        -#                   .form-check
+        -#                     %label.form-check-label
+        -#                       %input.form-check-input{type: "checkbox", value: ""}/
+        -#                       %span.form-check-sign
+        -#                 %td Read "Following makes Medium better"
+        -#                 %td.td-actions.text-right
+        -#                   %button.btn.btn-info.btn-simple.btn-link{rel: "tooltip", title: "Edit Task", type: "button"}
+        -#                     %i.fa.fa-edit
+        -#                   %button.btn.btn-danger.btn-simple.btn-link{rel: "tooltip", title: "Remove", type: "button"}
+        -#                     %i.fa.fa-times
+        -#               %tr
+        -#                 %td
+        -#                   .form-check
+        -#                     %label.form-check-label
+        -#                       %input.form-check-input{disabled: "disabled", type: "checkbox", value: ""}/
+        -#                       %span.form-check-sign
+        -#                 %td Unfollow 5 enemies from twitter
+        -#                 %td.td-actions.text-right
+        -#                   %button.btn.btn-info.btn-simple.btn-link{rel: "tooltip", title: "Edit Task", type: "button"}
+        -#                     %i.fa.fa-edit
+        -#                   %button.btn.btn-danger.btn-simple.btn-link{rel: "tooltip", title: "Remove", type: "button"}
+        -#                     %i.fa.fa-times
+        -#       .card-footer
+        -#         %hr/
+        -#         .stats
+        -#           %i.now-ui-icons.loader_refresh.spin
+        -#           Updated 3 minutes ago
+    %footer.footer
+      .container-fluid
+        %nav
+          %ul.footer-menu
+            %li
+              %a{href: "#"}
+                Home
+            %li
+              %a{href: "#"}
+                Company
+            %li
+              %a{href: "#"}
+                Portfolio
+            %li
+              %a{href: "#"}
+                Blog
+          %p.copyright.text-center
+            = "© #{Date.current.year} ,"
+            %a{href: "https://khmeross.com"} Khmer OSS

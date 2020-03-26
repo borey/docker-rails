@@ -1,0 +1,42 @@
+.sidebar{"data-image" => "../assets/img/sidebar-5.jpg"}
+  /
+    Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+    Tip 2: you can also add an image using data-image tag
+  .sidebar-wrapper
+    .logo
+      %a.simple-text{href: "https://khmeross.com"}
+        Khmer OSS
+    %ul.nav
+      %li.nav-item.active
+        %a.nav-link{href: "dashboard.html"}
+          %i.nc-icon.nc-chart-pie-35
+          %p Dashboard
+      %li
+        %a.nav-link{href: "./user.html"}
+          %i.nc-icon.nc-circle-09
+          %p User Profile
+      %li
+        %a.nav-link{href: "./table.html"}
+          %i.nc-icon.nc-notes
+          %p Table List
+      %li
+        %a.nav-link{href: "./typography.html"}
+          %i.nc-icon.nc-paper-2
+          %p Typography
+      %li
+        %a.nav-link{href: "./icons.html"}
+          %i.nc-icon.nc-atom
+          %p Icons
+      %li
+        %a.nav-link{href: "./maps.html"}
+          %i.nc-icon.nc-pin-3
+          %p Maps
+      %li
+        %a.nav-link{href: "./notifications.html"}
+          %i.nc-icon.nc-bell-55
+          %p Notifications
+      %li.nav-item.active.active-pro
+        %a.nav-link.active{href: "upgrade.html"}
+          %i.nc-icon.nc-settings-gear-64
+          %p App Setting
