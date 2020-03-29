@@ -49,6 +49,8 @@ jobs:
 
       - name: Build image
         run: docker build . --file Dockerfile --tag limborey/docker-rails:latest
+        env:
+          RAILS_PRODUCTION_KEY: {{secrets.RAILS_PRODUCTION_KEY}}
 
       - name: Log into registry
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login hub.docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
